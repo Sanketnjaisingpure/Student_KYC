@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/static/home.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome</h1>
+      <div class="container">
+        <div class="btn">
+          <a href="{{ url_for('registered') }}"
+            ><button class="button">Registered</button></a>
+
+          <a href="{{ url_for('non_registered') }}"
+            ><button class="button">Not Registered</button></a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Upload Image with Preview</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+      }
+      label {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      input[type="file"] {
+        font-size: 16px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      }
+      img#image-preview {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        max-width: 200px;
+        max-height: 200px;
+      }
+      span#image-error {
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: red;
+      }
+      span#image-message {
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Upload Image with Preview</h1>
+    <form>
+      <label for="image-upload">Select an image:</label>
+      <input type="file" id="image-upload" onchange="previewImage()" accept="image/*">
+      <br><br>
+      <img id="image-preview">
+      <br><br>
+      <span id="image-error" style="display:none;">Wrong image format or size</span>
+      <span id="image-message" style="display:none;">Wrong Image Uploaded</span>
+      <br><br>
+      <input type="submit" value="Upload">
+    </form>
+    <script>
+      function previewImage() {
+        var preview = document.querySelector('#image-preview');
+        var file = document.querySelector('#image-upload').files[0];
+        var reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+          preview.src = reader.result;
+        }, false);
+
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      }
+
+      function validateImage() {
+        var file = document.querySelector('#image-upload').files[0];
+        var imageType = /image.*/;
+        if (!file.type.match(imageType)) {
+          document.querySelector('#image-error').style.display = "block";
+          document.querySelector('#image-message').style.display = "none";
+        } else {
+          document.querySelector('#image-error').style.display = "none";
+          document.querySelector('#image-message').style.display = "block";
+        }
+      }
+
+      document.querySelector('#image-upload').addEventListener('change', validateImage);
+    </script>
+  </body>
+</html>

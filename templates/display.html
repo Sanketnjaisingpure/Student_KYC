@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Info</title>
+    <link rel="stylesheet" href="/static/display.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Info</h1>
+        {% if student_info %}
+            <p><strong>Student ID:</strong> {{ student_info['Student id'] }}</p>
+            <p><strong>Name:</strong> {{ student_info['Name'] }}</p>
+            <p><strong>Department:</strong> {{ student_info[ 'Section'] }}</p>
+            <p><strong>Program:</strong> {{ student_info['Program'] }}</p>
+            <p><strong>Year of Admission:</strong> {{ student_info['Year of Admission'] }}</p>
+        {% else %}
+            <p>Student info not found</p>
+        {% endif %}
+        <div class="btn-container">
+            <a class="btn" href="/home">Home</a>
+            <a class="btn" href="/non_registered">Non-Registered</a>
+            <a class="btn" href="/registered">Registered</a>
+        </div>
+        <div>
+            <div id="message"></div>
+
+        </div>
+    </div>
+
+    <script>
+        // Get the message element by ID
+var messageElement = document.getElementById("message");
+
+// Set the text of the message element
+messageElement.innerText = "You Card Status is Validated and Verified";
+
+    </script>
+</body>
+</html>
